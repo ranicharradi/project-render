@@ -10,4 +10,4 @@ RUN if [ -f composer.json ]; then composer install --no-dev --optimize-autoloade
 ENV PORT=10000
 EXPOSE 10000
 
-CMD ["sh", "-lc", "php -S 0.0.0.0:${PORT} -t public"]
+CMD ["sh", "-lc", "php -S 0.0.0.0:${PORT} -t public public/index.php"]

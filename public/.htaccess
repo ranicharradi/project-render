@@ -1,2 +1,13 @@
-# Placeholder for frameworks that expect Apache rewrites.
-# Not used by the built-in PHP server, but harmless to keep.
+# Route all requests through index.php when running under Apache.
+# The PHP built-in server uses index.php as a router via the run commands in README/Dockerfile.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Serve existing files and directories directly
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Otherwise, use the front controller
+  RewriteRule ^ index.php [L]
+</IfModule>
